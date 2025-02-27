@@ -25,7 +25,13 @@ export class Paging {
 		return this.canLoadMore;
 	}
 
-	public getPagingParameters(): string {
-		return `?per_page=${this.pageSize}&page=${this.currentPage}`;
+	public getPagingParameters(): object {
+		// return `?per_page=${this.pageSize}&page=${this.currentPage}`;
+		return {
+			params: {
+				per_page: this.pageSize,
+				page: this.currentPage,
+			},
+		};
 	}
 }

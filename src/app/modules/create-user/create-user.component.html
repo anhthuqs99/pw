@@ -1,0 +1,9 @@
+<div>
+	<form [formGroup]="userForm">
+		<input placeholder="Input your name" formControlName="name" />
+		<input placeholder="Input your job" formControlName="job" />
+		<button [disabled]="userForm.invalid" (click)="createNewUser()">
+			Create new user
+		</button>
+	</form>
+</div>

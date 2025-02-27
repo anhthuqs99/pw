@@ -18,9 +18,10 @@ export class ApiService {
 	constructor(protected http: HttpClient) {}
 
 	// GET request
-	get<T>(endpoint: string, options?: any): Observable<T> {
+	get<T>(endpoint: string, options?: object): Observable<T> {
 		let response = this.http.get<ApiResponse<T>>(
-			`${this.baseUrl}/${endpoint}${options ? options : ''}`
+			`${this.baseUrl}/${endpoint}`,
+			options
 		);
 		return new Observable<T>((observer) => {
 			response.subscribe((data: ApiResponse<T>) => {
@@ -31,8 +32,8 @@ export class ApiService {
 	}
 
 	// POST request
-	post<T>(endpoint: string, body: any, options?: any) {
-		return this.http.post(`${this.baseUrl}/${endpoint}`, body, options);
+	post<T>(endpoint: string, body: any, options?: any): Observable<any> {
+		return this.http.post<T>(`${this.baseUrl}/${endpoint}`, body, options);
 	}
 
 	// PUT request

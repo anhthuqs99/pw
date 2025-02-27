@@ -4,6 +4,7 @@
   <p>{{post.body}}</p>
   <br><br>
 </div> -->
+<a [routerLink]="['/create']">Create new user</a>
 <div *ngFor="let user of users">
 	<h3>ID: {{ user.id }}</h3>
 	<img src="{{ user.avatar }}" />

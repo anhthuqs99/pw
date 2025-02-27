@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { HomeService } from '../../services/home.service';
 import { CommonModule } from '@angular/common';
-import { Post, User } from '../../models/post.model';
+import { Post, User } from '../../models/user.model';
 import { Paging } from '../../logic/paging.logic';
+import { RouterModule } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
 	selector: 'app-home',
 	standalone: true,
-	imports: [CommonModule],
+	imports: [CommonModule, RouterModule],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
 })
@@ -15,7 +16,7 @@ export class HomeComponent {
 	public posts: Post[] = [];
 	public users: User[] = [];
 	private paging = new Paging(1, 3);
-	constructor(private homeService: HomeService) {
+	constructor(private homeService: UserService) {
 		this.initData();
 	}
 
