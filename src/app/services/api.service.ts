@@ -13,6 +13,7 @@ interface ApiResponse<T> {
 	providedIn: 'root',
 })
 export class ApiService {
+	// Testing API, more info: https://reqres.in/
 	private baseUrl = 'https://reqres.in/api';
 
 	constructor(protected http: HttpClient) {}
