@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Observable } from 'rxjs';
-import { Post } from '../models/post.model';
+import { firstValueFrom, Observable } from 'rxjs';
+import { Post, User } from '../models/post.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,5 +11,9 @@ export class HomeService {
 
   public getPosts(): Observable<Post[]> {
     return this.apiService.get('posts');
+  }
+
+  public async getUsers(parameters?: string): Promise<User[]> {
+    return firstValueFrom(this.apiService.get('users', parameters));
   }
 }

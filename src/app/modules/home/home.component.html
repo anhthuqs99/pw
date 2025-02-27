@@ -1,6 +1,13 @@
-<div *ngFor="let post of posts">
+<!-- <div *ngFor="let post of posts">
   <h3>{{post.id}}</h3>
   <p>{{post.title}}</p>
   <p>{{post.body}}</p>
   <br><br>
+</div> -->
+<div *ngFor="let user of users">
+  <h3>ID: {{user.id}}</h3>
+  <img src="{{user.avatar}}"/>
+  <p>Email: {{user.email}}</p>
+  <p>First Name: {{user.first_name}}</p>
+  <p>Last Name: {{user.last_name}}</p>
 </div>

@@ -2,17 +2,33 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+interface ApiResponse<T> {
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
+  data: T;
+
+}
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
-  private baseUrl = 'https://jsonplaceholder.typicode.com';
+  private baseUrl = 'https://reqres.in/api';
 
   constructor(protected http: HttpClient) { }
 
   // GET request
-  get<T>(endpoint: string): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}/${endpoint}`);
+  get<T>(endpoint: string, options?: any): Observable<T> {
+    let response = this.http.get<ApiResponse<T>>(`${this.baseUrl}/${endpoint}${options ? options : ''}`);
+    return new Observable<T>((observer) => {
+      response.subscribe((data: ApiResponse<T>) => {
+        observer.next(data.data);
+        observer.complete();
+      });
+    }
+    );
   }
 
   // POST request
